@@ -2,14 +2,13 @@ package com.minichaty.nico.minichaty.data.remote;
 
 
 import com.minichaty.nico.minichaty.data.LoginPost;
-
-import java.util.Observable;
+import com.minichaty.nico.minichaty.data.MessagePost;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -17,17 +16,15 @@ import retrofit2.http.POST;
  */
 public interface APIService {
 
-    // In the URL , will use the "/token" path
+    // In the URL , will use the "token" path
     // https://auth.uppsale.com/token.
-    @POST("/token")
+    @POST("token")
     @FormUrlEncoded
-    Call<ResponseBody> savePost(@Field("username") String username,
-                                @Field("password") String password,
-                                @Field("grant_type") String grantType);
+    Call<LoginPost> savePost(@Field("username") String username,
+                             @Field("password") String password,
+                             @Field("grant_type") String grantType);
 
-    @GET("/chat/messages.json")
-    Call<ResponseBody> getChat();
-
-    @GET("/chat/messages.json")
-    rx.Observable<ResponseBody> getChatFlow();
+    // Must add .json for the REST API of firebase to accept the request
+    @POST("chat.json")
+    Call<ResponseBody> sendMsg(@Body MessagePost message);
 }

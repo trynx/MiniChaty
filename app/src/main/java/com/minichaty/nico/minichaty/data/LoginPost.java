@@ -17,7 +17,7 @@ public class LoginPost {
     private String tokenType;
     @SerializedName("expires_in")
     @Expose
-    private int expiresIn;
+    private Integer expiresIn;
 
     public String getAccessToken() {
         return accessToken;
@@ -35,11 +35,11 @@ public class LoginPost {
         this.tokenType = tokenType;
     }
 
-    public int getExpiresIn() {
+    public Integer getExpiresIn() {
         return expiresIn;
     }
 
-    public void setExpiresIn(int expiresIn) {
+    public void setExpiresIn(Integer expiresIn) {
         this.expiresIn = expiresIn;
     }
 }
